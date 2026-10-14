@@ -1,3 +1,31 @@
 *{
     font-family: "Nunito", sans-serif;
 }
+
+.hero {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+}
+
+.card {
+    height: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.badge-sell {
+    background-color: #198754;
+}
+
+.badge-search {
+    background-color: #fd7e14;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #0d6efd;
+}

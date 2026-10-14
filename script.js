@@ -48,3 +48,99 @@ const articles = [
     { id: 48, name: "Plettro", category: "Musica", price: "0.99", type: "sell" },
     { id: 49, name: "Modem", category: "Mimmo", price: "2.99", type: "sell" }
 ];
+
+// ===== ELEMENTI DOM =====
+const container = document.getElementById("annunciContainer");
+const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
+const typeFilter = document.getElementById("typeFilter");
+const resultCount = document.getElementById("resultCount");
+const noResults = document.getElementById("noResults");
+
+// ===== POPOLA LE CATEGORIE NEL SELECT =====
+function popolaCategorie() {
+    const categorie = [];
+
+    for (let i = 0; i < articles.length; i++) {
+        const cat = articles[i].category;
+        if (categorie.indexOf(cat) === -1) {
+            categorie.push(cat);
+        }
+    }
+
+    for (let i = 0; i < categorie.length; i++) {
+        const option = document.createElement("option");
+        option.value = categorie[i];
+        option.innerText = categorie[i];
+        categoryFilter.appendChild(option);
+    }
+}
+
+// ===== CREA UNA SINGOLA CARD =====
+function creaCard(annuncio) {
+    const col = document.createElement("div");
+    col.className = "col-12 col-md-6 col-lg-4";
+
+    const tipoLabel = annuncio.type === "sell" ? "In vendita" : "Cerco";
+    const badgeClass = annuncio.type === "sell" ? "badge-sell" : "badge-search";
+
+    col.innerHTML = `
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-secondary">${annuncio.category}</span>
+                    <span class="badge ${badgeClass}">${tipoLabel}</span>
+                </div>
+                <h5 class="card-title">${annuncio.name}</h5>
+                <p class="price mt-auto mb-0">€ ${annuncio.price}</p>
+            </div>
+        </div>
+    `;
+
+    return col;
+}
+
+// ===== MOSTRA GLI ANNUNCI FILTRATI =====
+function mostraAnnunci() {
+    const testoRicerca = searchInput.value.toLowerCase();
+    const categoriaScelta = categoryFilter.value;
+    const tipoScelto = typeFilter.value;
+
+    // Svuoto il contenitore
+    container.innerHTML = "";
+
+    let contatore = 0;
+
+    for (let i = 0; i < articles.length; i++) {
+        const annuncio = articles[i];
+
+        // Filtri
+        const matchNome = annuncio.name.toLowerCase().includes(testoRicerca);
+        const matchCategoria = categoriaScelta === "all" || annuncio.category === categoriaScelta;
+        const matchTipo = tipoScelto === "all" || annuncio.type === tipoScelto;
+
+        if (matchNome && matchCategoria && matchTipo) {
+            const card = creaCard(annuncio);
+            container.appendChild(card);
+            contatore++;
+        }
+    }
+
+    // Aggiorno contatore e messaggio
+    resultCount.innerText = contatore + " annunci trovati";
+
+    if (contatore === 0) {
+        noResults.classList.remove("d-none");
+    } else {
+        noResults.classList.add("d-none");
+    }
+}
+
+// ===== EVENTI =====
+searchInput.addEventListener("input", mostraAnnunci);
+categoryFilter.addEventListener("change", mostraAnnunci);
+typeFilter.addEventListener("change", mostraAnnunci);
+
+// ===== AVVIO =====
+popolaCategorie();
+mostraAnnunci();

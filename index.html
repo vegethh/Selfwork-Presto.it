@@ -15,7 +15,73 @@
 </head>
 <body>
     
+<!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Presto.it</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Annunci</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Categorie</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Vendi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
+    <header class="hero text-center text-white py-5">
+        <div class="container">
+            <h1 class="display-5 fw-bold">Trova quello che cerchi</h1>
+            <p class="lead">Annunci di seconda mano vicino a te</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <!-- FILTRI -->
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Cerca per nome...">
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <select id="categoryFilter" class="form-select">
+                    <option value="all">Tutte le categorie</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <select id="typeFilter" class="form-select">
+                    <option value="all">Tutti i tipi</option>
+                    <option value="sell">In vendita</option>
+                    <option value="search">Cerco</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- CONTATORE RISULTATI -->
+        <p id="resultCount" class="text-muted mb-3"></p>
+
+        <!-- CONTENITORE CARD -->
+        <div id="annunciContainer" class="row g-4">
+            <!-- Le card vengono generate qui -->
+        </div>
+
+        <!-- MESSAGGIO NESSUN RISULTATO -->
+        <div id="noResults" class="alert alert-warning d-none text-center">
+            Nessun annuncio trovato con i filtri selezionati.
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0">© 2026 Presto.it - Tutti i diritti riservati</p>
+    </footer>
 
 
 
