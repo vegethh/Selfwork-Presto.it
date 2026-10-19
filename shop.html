@@ -22,23 +22,32 @@
   <main class="container">
     <div class="row">
 
-     <aside class="col-12 col-md-3 mb-4">
-  <h4>Filtri</h4>
+      <aside class="col-12 col-md-3 mb-4">
+        <h4>Filtri</h4>
 
-  <div class="mb-3">
-    <input type="text" id="searchInput" class="form-control" placeholder="Cerca oggetto...">
-  </div>
+        <!-- RICERCA NOME -->
+        <div class="mb-3">
+          <input type="text" id="searchInput" class="form-control" placeholder="Cerca oggetto...">
+        </div>
 
-  <h5>Categorie</h5>
-  <div id="radioWrapper">
-    <!-- radio generati da JS -->
-  </div>
-</aside>
+        <!-- FILTRO PREZZO -->
+        <h5>Prezzo</h5>
+        <div class="mb-3">
+          <label class="form-label">Minimo</label>
+          <input type="number" id="minPrice" class="form-control" placeholder="0" min="0">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Massimo</label>
+          <input type="number" id="maxPrice" class="form-control" placeholder="100000" min="0">
+        </div>
+
+        <!-- CATEGORIE -->
+        <h5>Categorie</h5>
+        <div id="radioWrapper"></div>
+      </aside>
 
       <section class="col-12 col-md-9">
-        <div id="cardWrapper" class="row g-3">
-          <!-- card generate da JS -->
-        </div>
+        <div id="cardWrapper" class="row g-3"></div>
       </section>
 
     </div>

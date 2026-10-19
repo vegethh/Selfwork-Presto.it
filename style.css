@@ -1,15 +1,62 @@
+:root {
+  --dark-custom: #1a1a1a;
+  --white-custom: #ffffff;
+  --accent-custom: #0d6efd;
+  --first-custom: #0d6efd;
+}
+
+.bg-first-custom {
+  background-color: var(--first-custom);
+}
+
+.bg-accent-custom {
+  background-color: var(--accent-custom);
+  color: white;
+}
+
+.text-accent-custom {
+  color: #ffc107;
+}
+
+.margin-top-custom {
+  margin-top: 80px;
+  min-height: 50vh;
+}
+
+.numbers-section {
+  min-height: 200px;
+  border-radius: 12px;
+  padding: 40px 0;
+}
+
+.reviewCard {
+  background: white;
+  color: #333;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin: 0 40px;
+}
+
+#navbarColor {
+  transition: 0.3s;
+  background-color: transparent;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 8px;
+}
+
+.linkColor {
+  color: var(--dark-custom);
+}
+
+/* shop cards */
 .card-custom {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 15px;
-  background-color: #fff;
-}
-
-.card-custom:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-#radioWrapper .form-check {
-  margin-bottom: 8px;
+  background: #fff;
 }

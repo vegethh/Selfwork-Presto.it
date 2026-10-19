@@ -6,6 +6,8 @@ fetch('./shop.json')
     let radioWrapper = document.querySelector('#radioWrapper');
     let cardWrapper = document.querySelector('#cardWrapper');
     let searchInput = document.querySelector('#searchInput');
+    let minPrice = document.querySelector('#minPrice');
+    let maxPrice = document.querySelector('#maxPrice');
 
     function setCategoryRadios() {
       let categories = data.map((ad) => ad.category);
@@ -33,9 +35,7 @@ fetch('./shop.json')
 
       let radios = document.querySelectorAll('input[name="categories"]');
       radios.forEach((radio) => {
-        radio.addEventListener('click', () => {
-          filterCards();
-        });
+        radio.addEventListener('click', filterCards);
       });
     }
 
@@ -59,13 +59,24 @@ fetch('./shop.json')
     function filterCards() {
       let radios = document.querySelectorAll('input[name="categories"]');
       let arrayFromNodeList = Array.from(radios);
-      let button = arrayFromNodeList.find((button) => button.checked);
+      let button = arrayFromNodeList.find((radio) => radio.checked);
+
       let searchValue = searchInput.value.toLowerCase();
+      let min = Number(minPrice.value);
+      let max = Number(maxPrice.value);
+
+      // se i campi prezzo sono vuoti, non limitare
+      if (minPrice.value === '') min = 0;
+      if (maxPrice.value === '') max = Infinity;
 
       let filtered = data.filter((ad) => {
+        let price = Number(ad.price);
+
         let matchCategory = button.id == 'All' || ad.category == button.id;
         let matchName = ad.name.toLowerCase().includes(searchValue);
-        return matchCategory && matchName;
+        let matchPrice = price >= min && price <= max;
+
+        return matchCategory && matchName && matchPrice;
       });
 
       showCards(filtered);
@@ -74,7 +85,7 @@ fetch('./shop.json')
     setCategoryRadios();
     showCards(data);
 
-    searchInput.addEventListener('input', () => {
-      filterCards();
-    });
+    searchInput.addEventListener('input', filterCards);
+    minPrice.addEventListener('input', filterCards);
+    maxPrice.addEventListener('input', filterCards);
   });
